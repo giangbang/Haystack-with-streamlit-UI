@@ -238,10 +238,10 @@ Ask any question on this topic and see if Haystack can find the correct answer t
                 )
                 source = ""
                 url, title = get_backlink(result)
-                if url and title:
-                    source = f"[{result['document']['meta']['title']}]({result['document']['meta']['url']})"
-                else:
-                    source = f"{result['source']}"
+                # if url and title:
+                #     source = f"[{result['document']['meta']['title']}]({result['document']['meta']['url']})"
+                # else:
+                #     source = f"{result['source']}"
                 st.markdown(f"**Relevance:** {result['relevance']} -  **Source:** {source}")
 
             else:
