@@ -10,13 +10,13 @@ import requests
 import streamlit as st
 
 
-API_ENDPOINT = os.getenv("API_ENDPOINT", "http://localhost:8000")
-STATUS = "initialized"
+API_ENDPOINT = os.getenv("API_ENDPOINT", "http://localhost:9090/api/v1/doc_retrieval")
+STATUS = "ping"
 HS_VERSION = "hs_version"
 DOC_REQUEST = "query"
 DOC_FEEDBACK = "feedback"
 DOC_UPLOAD = "file-upload"
-
+DOC_RETRIEVAL = "retrieval"
 
 def haystack_is_ready():
     """
@@ -47,7 +47,7 @@ def query(query, filters={}, top_k_reader=5, top_k_retriever=5) -> Tuple[List[Di
     Returns both a ready-to-use representation of the results and the raw JSON.
     """
 
-    url = f"{API_ENDPOINT}/{DOC_REQUEST}"
+    url = f"{API_ENDPOINT}/{DOC_RETRIEVAL}"
     params = {"filters": filters, "Retriever": {"top_k": top_k_retriever}, "Reader": {"top_k": top_k_reader}}
     req = {"query": query, "params": params}
     response_raw = requests.post(url, json=req)
